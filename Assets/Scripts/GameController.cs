@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour {
     public GameObject peligro1;
 	public GameObject peligro2;
 	public GameObject peligro3;
+	public GameObject pegasus;
+	public GameObject baseCylon;
+
     public GameObject nave;
 
     public Vector3 spawnValues;
@@ -19,7 +22,6 @@ public class GameController : MonoBehaviour {
 
 	private bool bolGameOver;
 	private int nivel;
-	private float nextActionTime = 0.0f;
 	public float period = 1000000f;
 	// Use this for initialization
 	void Start () {
@@ -39,7 +41,7 @@ public class GameController : MonoBehaviour {
             {
 				Vector3 spawnPosition = Vector3.zero;
 				if (nave != null)
-					spawnPosition = new Vector3(Random.Range(nave.transform.position.x-6,nave.transform.position.x+6), Random.Range(nave.transform.position.y-6,nave.transform.position.y+6), Random.Range(nave.transform.position.z+10,nave.transform.position.z+30));
+					spawnPosition = new Vector3(Random.Range(nave.transform.position.x-6,nave.transform.position.x+6), Random.Range(nave.transform.position.y-6,nave.transform.position.y+6), Random.Range(nave.transform.position.z+30,nave.transform.position.z+40));
 				float rand = Random.value;
 				if (rand < 0.3) {
 					Instantiate (peligro1, spawnPosition, Quaternion.identity);
@@ -72,12 +74,26 @@ public class GameController : MonoBehaviour {
 		}
 	}
 	IEnumerator CorrutinaNivel(){
-		yield return new WaitForSeconds(10);
-		SubirNivel ();
+		while (!bolGameOver) {
+			yield return new WaitForSeconds (10);
+			SubirNivel ();
+		}
 	}
 	private void SubirNivel(){
 		nivel = nivel + 1;
 		numeroEnemigos = numeroEnemigos + 2;
 		nivelText.text = "Nivel: " + nivel;
+		Vector3 spawnPosition = Vector3.zero;
+		if (nivel % 2 != 0) {
+			if (nave != null) {
+				spawnPosition = new Vector3 (-200, Random.Range (0, 50), Random.Range (nave.transform.position.z + 300, nave.transform.position.z + 400));
+				Instantiate (pegasus, spawnPosition, Quaternion.identity);
+			}
+		} else {
+			if (nave != null) {
+				spawnPosition = new Vector3 (200, Random.Range (0, 50), Random.Range (nave.transform.position.z + 300, nave.transform.position.z + 400));
+				Instantiate (baseCylon, spawnPosition, Quaternion.identity);
+			}
+		}
 	}
 }

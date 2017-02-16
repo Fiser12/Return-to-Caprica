@@ -19,3 +19,24 @@
 /Users/Fiser/Desktop/Space Shooter/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/Fiser/Desktop/Space Shooter/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/Fiser/Desktop/Space Shooter/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/obj/Debug/Assembly-CSharp-firstpass.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/obj/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/UnityEngine.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/UnityEditor.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/UnityEngine.Analytics.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/UnityEngine.PlaymodeTestsRunner.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/UnityEngine.HoloLens.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/UnityEngine.VR.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/Fiser/Desarrollo/Return-to-Caprica/Temp/bin/Debug/Mono.Cecil.Mdb.dll
