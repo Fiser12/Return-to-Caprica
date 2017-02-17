@@ -40,28 +40,54 @@ public class CylonRaiderController : MonoBehaviour {
 			descansoArma = false;
 		}
 		if (target != null) {
+			Vector3 avanzar = Vector3.forward;
 			float distance = Vector3.Distance (transform.position, target.position);
 			if (distance < 5) {
-				transform.LookAt (target);
-			} else if (distance < 20) {
-				transform.LookAt (target);
+				RotateTowardsPlayer ();
+			} else if (IsPlayerWithinAttackRange()) {
+				RotateTowardsPlayer ();
 				if (Time.time > nextFire) {
-					rig.AddRelativeForce (Vector3.forward * speed / 3);
-					if (!descansoArma) {
-						disparos++;
-						nextFire = Time.time + fireRate;
-						Instantiate (shot, shotSpawn1.position, transform.rotation);
-						Instantiate (shot, shotSpawn2.position, transform.rotation);
-						audioDisparo.Play ();
-					}
+					MoveForward();
+					Fire ();
 				}
-			} else if (distance < 400) {
+			} else if (IsPlayerWithinApproachRange()) {
 				transform.LookAt (target);
-				rig.AddRelativeForce (Vector3.forward * speed);
+				MoveForward();
 			} 
 		} else {
 			transform.LookAt (target);
 		}
 		rig.velocity = rig.velocity * 0.986f;
 	}
+	void RotateTowardsPlayer()
+	{
+		rig.AddRelativeForce (Random.insideUnitSphere * speed * 5); //Para evitar que convergan todos en el mismo sitio
+		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.position - transform.position), (speed/2) * Time.deltaTime);
+	}
+	void MoveForward()
+	{
+		transform.position += transform.forward * speed * Time.deltaTime;
+	}
+	bool IsPlayerWithinApproachRange()
+	{
+		var distance = (target.position - transform.position).magnitude;
+		return distance < 400;
+	}
+	bool IsPlayerWithinAttackRange()
+	{
+		var distance = (target.position - transform.position).magnitude;
+		return distance < 20;
+	}
+
+	void Fire()
+	{
+		if (!descansoArma) {
+			disparos++;
+			nextFire = Time.time + fireRate;
+			Instantiate (shot, shotSpawn1.position, transform.rotation);
+			Instantiate (shot, shotSpawn2.position, transform.rotation);
+			audioDisparo.Play ();
+		}
+	}
+
 }
