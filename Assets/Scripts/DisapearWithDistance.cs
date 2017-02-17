@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DisapearWithDistance : MonoBehaviour {
-	public Transform player;
+	public GameObject player;
 	public float distanceMinimum;
 
 	void Start () {
-		float distance = Vector3.Distance (transform.position, player.position);
-
-		if(distance>distanceMinimum)
-			Destroy(gameObject);
+		player = GameObject.FindWithTag ("Player");
 	}
-
+	void FixedUpdate(){
+		if (player != null) {
+			float distance = Vector3.Distance (transform.position, player.transform.position);
+			if (distance > distanceMinimum)
+				Destroy (gameObject);
+		}
+	}
 	// Use this for initialization
 }

@@ -9,9 +9,7 @@ public class GameController : MonoBehaviour {
 	public GameObject peligro3;
 	public GameObject pegasus;
 	public GameObject baseCylon;
-	public GameObject caprica;
     public GameObject nave;
-
     public Vector3 spawnValues;
 	public int numeroAsteroides;
     public float spawnWait;
@@ -28,35 +26,26 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		gameOverText.gameObject.SetActive (false);
 		puntuacion = 0;
-        //StartCoroutine(SpawnWaves());
+        StartCoroutine(SpawnWaves());
 		StartCoroutine(CorrutinaNivel());
 		nivel = 1;
 		wantedMode = CursorLockMode.Locked;
 	}
-	
 	// Update is called once per frame
 	IEnumerator SpawnWaves () {
-        yield return new WaitForSeconds(3f);
-		while (!bolGameOver)
-        {
-            for (int i = 0; i < numeroAsteroides; i++)
-            {
-				Vector3 spawnPosition = Vector3.zero;
-				if (nave != null)
-					spawnPosition = new Vector3(Random.Range(nave.transform.position.x-6,nave.transform.position.x+6), Random.Range(nave.transform.position.y-6,nave.transform.position.y+6), Random.Range(nave.transform.position.z+30,nave.transform.position.z+40));
-				float rand = Random.value;
-				if (rand < 0.3) {
-					Instantiate (peligro1, spawnPosition, Quaternion.identity);
-				}else if (rand < 0.6){
-					Instantiate (peligro2, spawnPosition, Quaternion.identity);
-				}else{
-					Instantiate (peligro3, spawnPosition, Quaternion.identity);
-				}
-
-				yield return new WaitForSeconds(spawnWait);
-            }
-			yield return new WaitForSeconds(spawnWait);
-        }
+		Vector3 posicion = transform.position;
+		for (int i = 0; i < numeroAsteroides; i++) {
+			Vector3 spawnPosition = new Vector3(Random.Range(posicion.x-100f,posicion.x+100f), Random.Range(posicion.y-30f,posicion.y+30f), Random.Range(posicion.z+50,posicion.z+300f));
+			float rand = Random.value;
+			if (rand < 0.3) {
+				Instantiate (peligro1, spawnPosition, Quaternion.identity);
+			}else if (rand < 0.6){
+				Instantiate (peligro2, spawnPosition, Quaternion.identity);
+			}else{
+				Instantiate (peligro3, spawnPosition, Quaternion.identity);
+			}
+		}
+		yield return new WaitForSeconds(3f);
     }
 	void ActualizarPuntuacion(){
 		text.text = "Puntuación: " + puntuacion;
@@ -76,9 +65,15 @@ public class GameController : MonoBehaviour {
 		}
 	}
 	IEnumerator CorrutinaNivel(){
+		if (nave != null) {
+			Vector3 spawnPosition = Vector3.zero;
+			spawnPosition = new Vector3 (Random.Range (-150, 150), Random.Range (-20, 20), Random.Range (400, 300));
+			Instantiate (baseCylon, spawnPosition, Quaternion.identity);
+		}
+	
 		SubirNivel ();
 		while (!bolGameOver) {
-			if ((GameObject.FindGameObjectsWithTag ("Enemy").Length + GameObject.FindGameObjectsWithTag ("BigEnemy").Length) == 0)
+			if ((GameObject.FindGameObjectsWithTag ("Enemy").Length) == 0)
 				SubirNivel ();
 			yield return new WaitForSeconds (10);
 		}
@@ -86,11 +81,7 @@ public class GameController : MonoBehaviour {
 	private void SubirNivel(){
 		nivel = nivel + 1;
 		nivelText.text = "Nivel: " + nivel;
-		Vector3 spawnPosition = Vector3.zero;
-		if (nave != null) {
-			spawnPosition = new Vector3 (Random.Range (-150, 150), Random.Range (0, 20), Random.Range (500, 300));
-			Instantiate (baseCylon, spawnPosition, Quaternion.identity);
-		}
+		GameObject.FindGameObjectWithTag ("BigEnemy").GetComponent<CylonShipController> ().SacarEnemigos(nivel+2);
 	}
 
 	// Apply requested cursor state

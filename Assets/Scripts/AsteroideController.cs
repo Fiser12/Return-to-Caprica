@@ -13,6 +13,8 @@ public class AsteroideController : MonoBehaviour {
 	// Update is called once per frame
 	void Start () {
         rig.angularVelocity = Random.insideUnitSphere*tumble;
-		rig.velocity = Random.insideUnitSphere*tumble;
+		rig.velocity = Random.insideUnitSphere*2;
+		float rand = Random.value*3;
+		transform.localScale += new Vector3(rand, rand, rand);
 	}
 }

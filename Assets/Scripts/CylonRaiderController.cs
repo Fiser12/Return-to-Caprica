@@ -10,7 +10,7 @@ public class CylonRaiderController : MonoBehaviour {
 	public float fireRate;
 	private bool descansoArma;
 	private int disparos = 0;
-	private int disparosPorRafaga = 10;
+	private int disparosPorRafaga = 5;
 	private float descansoRate = 2;
 	private float nextRafaga;
 
@@ -43,15 +43,6 @@ public class CylonRaiderController : MonoBehaviour {
 			float distance = Vector3.Distance (transform.position, target.position);
 			if (distance < 5) {
 				transform.LookAt (target);
-				if (Time.time > nextFire) {
-					if (!descansoArma) {
-						disparos++;
-						nextFire = Time.time + fireRate;
-						Instantiate (shot, shotSpawn1.position, transform.rotation);
-						Instantiate (shot, shotSpawn2.position, transform.rotation);
-						audioDisparo.Play ();
-					}
-				}
 			} else if (distance < 20) {
 				transform.LookAt (target);
 				if (Time.time > nextFire) {
