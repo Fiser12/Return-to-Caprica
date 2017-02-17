@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AreaController : MonoBehaviour
 {
-	public GameObject planeta;
 	public GameObject explosionAsteroide;
 	public GameObject playerExplosion;
 	private GameController gameController;

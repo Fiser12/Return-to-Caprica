@@ -17,7 +17,10 @@ public class GameController : MonoBehaviour {
 	public Text text;
 	public Text gameOverText;
 	public Text nivelText;
+	public Text enemigosText;
+	public Text vidaText;
 
+	int enemigosRestantes = 0;
 	private bool bolGameOver;
 	public int nivel = 0;
 	public float period = 1000000f;
@@ -61,8 +64,22 @@ public class GameController : MonoBehaviour {
 	void FixedUpdate(){
 		if (bolGameOver && Input.GetKeyDown (KeyCode.Mouse0)) {
 			SceneManager.LoadScene (0);
-		} else {
 		}
+		int enemigosRest2 = GameObject.FindGameObjectsWithTag ("Enemy").Length;
+		if (enemigosRestantes != enemigosRest2) {
+			enemigosRestantes = enemigosRest2;
+			enemigosText.text = "Enemigos: " + enemigosRestantes;
+		}
+	}
+	public void setVida(int vida){
+		vidaText.text = "Vida: " + vida +"%";
+		if(vida>60)
+			vidaText.color = Color.green;
+		else if(vida>30)
+			vidaText.color = Color.yellow;
+		else
+			vidaText.color = Color.red;
+		
 	}
 	IEnumerator CorrutinaNivel(){
 		if (nave != null) {
@@ -81,6 +98,8 @@ public class GameController : MonoBehaviour {
 	private void SubirNivel(){
 		nivel = nivel + 1;
 		nivelText.text = "Nivel: " + nivel;
+		setVida (100);
+		GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ().restaurarVida ();
 		GameObject.FindGameObjectWithTag ("BigEnemy").GetComponent<CylonShipController> ().SacarEnemigos(nivel+2);
 	}
 

@@ -15,11 +15,11 @@ public class PlayerController : MonoBehaviour {
 	private float xPoint;
 	private float yPoint;
 	private AudioSource audioDisparo;
-
+	public int vida { get; set;}
 	int mouseSensativity = 15;
 	bool invertPitch = true;
 	void Start(){
-
+		vida = 100;
 	}
     private void Awake()
     {
@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour {
 		rigidBody.velocity = rigidBody.velocity*0.986f;
 
 	}
-
     private void Update()
     {
         if (Input.GetButton("Fire1")&&Time.time>nextFire)
@@ -66,4 +65,15 @@ public class PlayerController : MonoBehaviour {
 			audioDisparo.Play ();
         }
     }
+	public float nextDamage;
+	public void dañoRecibido(int daño)
+	{
+		if (Time.time > nextDamage) {
+			nextDamage = Time.time + 3;
+			vida = vida - daño;
+		}
+	}
+	public void restaurarVida(){
+		vida = 100;
+	}
 }
