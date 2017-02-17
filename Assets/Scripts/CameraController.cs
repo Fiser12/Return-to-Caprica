@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
 	public GameObject player;
-	public float damping = 0.5f;
+	public float damping = 0.70f;
 	Vector3 offset;
 	void Start () {
 		Vector3 temp = player.transform.position;
