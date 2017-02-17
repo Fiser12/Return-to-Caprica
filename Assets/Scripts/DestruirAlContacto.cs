@@ -12,15 +12,11 @@ public class DestruirAlContacto : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Boundary") return;
-
-		if (other.tag == "Player") {
+		if (other.tag == "Player" || other.tag == "Enemy") {
 			Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
 			gameController.GameOver ();
-		} else {
-			gameController.AnadirPuntuacion (100);
-			Instantiate(explosionAsteroide, transform.position, transform.rotation);
+			Destroy(other.gameObject);
+			Destroy(gameObject);
 		}
-        Destroy(other.gameObject);
-        Destroy(gameObject);
     }
 }

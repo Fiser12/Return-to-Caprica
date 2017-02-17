@@ -53,9 +53,11 @@
      <Compile Include="Assets\Scripts\AreaController.cs" />
      <Compile Include="Assets\Scripts\AsteroideController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CylonRaiderController.cs" />
      <Compile Include="Assets\Scripts\CylonShipController.cs" />
      <Compile Include="Assets\Scripts\DestruirAlContacto.cs" />
      <Compile Include="Assets\Scripts\DisapearAfterTime.cs" />
+     <Compile Include="Assets\Scripts\DisapearWithDistance.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\InfiniteStarfield.cs" />
      <Compile Include="Assets\Scripts\MoverLaser.cs" />
